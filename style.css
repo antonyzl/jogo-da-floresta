@@ -1,9 +1,9 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif;
-  background-color: #222;
-  color: #fff;
+  background-color: #111;
+  font-family: sans-serif;
+  color: white;
   text-align: center;
 }
 
@@ -15,10 +15,10 @@ h1 {
   width: 800px;
   height: 500px;
   margin: 20px auto;
-  position: relative;
   border: 3px solid #0f0;
-  background-image: url('floresta.jpg'); /* ou substitua por uma cor */
+  background-image: url('https://ufla.br/images/noticias/2020/10_out/desmatadas-jpg.jpg');
   background-size: cover;
+  position: relative;
   overflow: hidden;
 }
 
@@ -29,6 +29,33 @@ h1 {
   position: absolute;
   top: 230px;
   left: 380px;
+  z-index: 10;
   border-radius: 5px;
-  transition: top 0.1s, left 0.1s;
+}
+
+.obstacle {
+  width: 50px;
+  height: 50px;
+  background-color: brown;
+  position: absolute;
+  z-index: 5;
+  border-radius: 8px;
+}
+
+.item {
+  width: 30px;
+  height: 30px;
+  background-color: gold;
+  position: absolute;
+  border-radius: 50%;
+  z-index: 5;
+}
+
+.enemy {
+  width: 40px;
+  height: 40px;
+  background-color: red;
+  position: absolute;
+  border-radius: 5px;
+  z-index: 5;
 }
