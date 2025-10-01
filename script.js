@@ -14,19 +14,19 @@ const speed = 10;
 const containerWidth = container.clientWidth;
 const containerHeight = container.clientHeight;
 
-// Posiciona elementos aleatoriamente dentro da área do jogo
+
 function positionElements() {
   enemies.forEach(enemy => {
-    enemy.style.left = Math.random() * (containerWidth - 70) + "px";
-    enemy.style.top = Math.random() * (containerHeight - 70) + "px";
+    enemy.style.left = Math.random() * (containerWidth - 85) + "px";
+    enemy.style.top = Math.random() * (containerHeight - 85) + "px";
   });
   items.forEach(item => {
-    item.style.left = Math.random() * (containerWidth - 70) + "px";
-    item.style.top = Math.random() * (containerHeight - 70) + "px";
+    item.style.left = Math.random() * (containerWidth - 85) + "px";
+    item.style.top = Math.random() * (containerHeight - 85) + "px";
   });
   obstacles.forEach(obstacle => {
-    obstacle.style.left = Math.random() * (containerWidth - 70) + "px";
-    obstacle.style.top = Math.random() * (containerHeight - 70) + "px";
+    obstacle.style.left = Math.random() * (containerWidth - 85) + "px";
+    obstacle.style.top = Math.random() * (containerHeight - 85) + "px";
   });
 }
 
@@ -86,7 +86,7 @@ document.addEventListener("keydown", (e) => {
       break;
   }
 
-  // Mantém o jogador dentro da área
+  
   if (newX < 0) newX = 0;
   if (newX > container.clientWidth - player.clientWidth) newX = container.clientWidth - player.clientWidth;
   if (newY < 0) newY = 0;

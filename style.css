@@ -2,7 +2,7 @@ html, body {
   margin: 0;
   padding: 0;
   height: 100%;
-  overflow: hidden; /* tira qualquer scroll */
+  overflow: hidden; 
   font-family: Arial, sans-serif;
   background-color: #111;
   color: white;
@@ -18,9 +18,9 @@ h1, p {
 #game-wrapper {
   position: relative;
   width: 100vw;
-  height: calc(100vh - 80px); /* subtraindo altura do título e pontuação */
+  height: calc(100vh - 80px); 
   border: 3px solid #0f0;
-  overflow: hidden; /* sem scroll */
+  overflow: hidden; 
   background-image: url('https://images.unsplash.com/photo-1506765515384-028b60a970df?auto=format&fit=crop&w=1920&q=80');
   background-size: cover;
   background-position: center;
@@ -32,20 +32,19 @@ h1, p {
   height: 100%;
 }
 
-/* Personagens, inimigos, itens e obstáculos maiores */
 #player, .enemy, .item, .obstacle img {
-  width: 70px;
-  height: 70px;
+  width: 85px;
+  height: 85px;
   position: absolute;
-  z-index: 10;
+  z-index: 15;
 }
 
 .obstacle {
   position: absolute;
   z-index: 5;
-  width: 70px;
-  height: 70px;
-  border-radius: 10px;
-  border: 2px solid #333;
+  width: 85px;
+  height: 85px;
+  border-radius: 15px;
+  border: 4px solid #333;
   overflow: hidden;
 }
