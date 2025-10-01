@@ -8,7 +8,8 @@ body {
 }
 
 #game-wrapper {
-  width: 100%;
+  width: 90vw;
+  max-width: 900px;
   height: 600px;
   overflow: auto;
   border: 3px solid #0f0;
@@ -17,35 +18,34 @@ body {
 }
 
 #game-container {
-  width: 1600px; /* mapa maior */
+  width: 1600px;
   height: 1200px;
   position: relative;
   background-image: url('https://images.unsplash.com/photo-1506765515384-028b60a970df?auto=format&fit=crop&w=1600&q=80');
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
 }
 
 #player, .enemy, .item {
-  width: 50px;
-  height: 50px;
+  width: 70px;
+  height: 70px;
   position: absolute;
   z-index: 10;
 }
 
 .obstacle {
-  width: 60px;
-  height: 60px;
-  background-color: #654321;
+  width: 70px;
+  height: 70px;
   position: absolute;
   z-index: 5;
   border-radius: 10px;
   border: 2px solid #333;
+  overflow: hidden;
 }
 
-.enemy {
-  z-index: 9;
-}
-
-.item {
-  z-index: 8;
+.obstacle img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }

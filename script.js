@@ -3,7 +3,7 @@ const container = document.getElementById("game-container");
 const scoreDisplay = document.getElementById("score");
 const obstacles = document.querySelectorAll(".obstacle");
 const items = document.querySelectorAll(".item");
-const enemy = document.getElementById("enemy1");
+const enemies = document.querySelectorAll(".enemy");
 
 let posX = 100;
 let posY = 100;
@@ -11,27 +11,34 @@ let score = 0;
 let gameOver = false;
 const speed = 10;
 
-// Inicializa a posição do jogador
 player.style.left = posX + "px";
 player.style.top = posY + "px";
 
-// Movimento do inimigo (esquerda e direita)
-let enemyDirection = 1;
-setInterval(() => {
+const enemySpeeds = [4, 3, 5];
+const enemyDirections = [1, 1, 1];
+
+function moveEnemies() {
   if (gameOver) return;
 
-  const enemyPos = enemy.offsetLeft;
-  const maxX = container.clientWidth - enemy.clientWidth;
+  enemies.forEach((enemy, idx) => {
+    let enemyPos = enemy.offsetLeft;
+    const maxX = container.clientWidth - enemy.clientWidth;
 
-  if (enemyPos <= 0 || enemyPos >= maxX) {
-    enemyDirection *= -1;
-  }
+    if (enemyPos <= 0 || enemyPos >= maxX) {
+      enemyDirections[idx] *= -1;
+    }
 
-  enemy.style.left = (enemyPos + enemyDirection * 5) + "px";
-  checkCollisionWithEnemy();
-}, 100);
+    enemy.style.left = (enemyPos + enemyDirections[idx] * enemySpeeds[idx]) + "px";
 
-// Controle do jogador
+    if (isColliding(player, enemy)) {
+      alert(`☠️ Você foi pego pelo Rumpelstiltskin! Fim de jogo.\nPontuação: ${score}`);
+      gameOver = true;
+    }
+  });
+}
+
+setInterval(moveEnemies, 100);
+
 document.addEventListener("keydown", (e) => {
   if (gameOver) return;
 
@@ -64,11 +71,9 @@ document.addEventListener("keydown", (e) => {
     player.style.top = posY + "px";
 
     checkCollisionWithItems();
-    checkCollisionWithEnemy();
   }
 });
 
-// Verifica colisão entre elementos
 function isColliding(a, b) {
   const r1 = a.getBoundingClientRect();
   const r2 = b.getBoundingClientRect();
@@ -80,7 +85,6 @@ function isColliding(a, b) {
   );
 }
 
-// Checa colisão com obstáculos
 function checkCollisionWithObstacles(newX, newY) {
   player.style.left = newX + "px";
   player.style.top = newY + "px";
@@ -90,14 +94,12 @@ function checkCollisionWithObstacles(newX, newY) {
     if (isColliding(player, ob)) collided = true;
   });
 
-  // Volta posição original
   player.style.left = posX + "px";
   player.style.top = posY + "px";
 
   return collided;
 }
 
-// Checa e coleta itens
 function checkCollisionWithItems() {
   items.forEach(item => {
     if (item.style.display !== "none" && isColliding(player, item)) {
@@ -106,12 +108,4 @@ function checkCollisionWithItems() {
       scoreDisplay.textContent = score;
     }
   });
-}
-
-// Checa colisão com inimigo
-function checkCollisionWithEnemy() {
-  if (isColliding(player, enemy)) {
-    alert("☠️ Você foi pego! Fim de jogo.\nPontuação: " + score);
-    gameOver = true;
-  }
 }
