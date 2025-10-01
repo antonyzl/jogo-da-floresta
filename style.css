@@ -1,33 +1,39 @@
-body {
+html, body {
   margin: 0;
   padding: 0;
+  height: 100%;
+  overflow: hidden; /* tira qualquer scroll */
   font-family: Arial, sans-serif;
-  text-align: center;
   background-color: #111;
   color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1, p {
+  margin: 10px 0;
 }
 
 #game-wrapper {
-  width: 90vw;
-  max-width: 900px;
-  height: 600px;
-  overflow: auto;
-  border: 3px solid #0f0;
-  margin: 20px auto;
   position: relative;
+  width: 100vw;
+  height: calc(100vh - 80px); /* subtraindo altura do título e pontuação */
+  border: 3px solid #0f0;
+  overflow: hidden; /* sem scroll */
+  background-image: url('https://images.unsplash.com/photo-1506765515384-028b60a970df?auto=format&fit=crop&w=1920&q=80');
+  background-size: cover;
+  background-position: center;
 }
 
 #game-container {
-  width: 1600px;
-  height: 1200px;
   position: relative;
-  background-image: url('https://images.unsplash.com/photo-1506765515384-028b60a970df?auto=format&fit=crop&w=1600&q=80');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
 }
 
-#player, .enemy, .item {
+/* Personagens, inimigos, itens e obstáculos maiores */
+#player, .enemy, .item, .obstacle img {
   width: 70px;
   height: 70px;
   position: absolute;
@@ -35,17 +41,11 @@ body {
 }
 
 .obstacle {
-  width: 70px;
-  height: 70px;
   position: absolute;
   z-index: 5;
+  width: 70px;
+  height: 70px;
   border-radius: 10px;
   border: 2px solid #333;
   overflow: hidden;
-}
-
-.obstacle img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
 }

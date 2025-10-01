@@ -5,11 +5,32 @@ const obstacles = document.querySelectorAll(".obstacle");
 const items = document.querySelectorAll(".item");
 const enemies = document.querySelectorAll(".enemy");
 
-let posX = 100;
-let posY = 100;
+let posX = 50;
+let posY = 50;
 let score = 0;
 let gameOver = false;
 const speed = 10;
+
+const containerWidth = container.clientWidth;
+const containerHeight = container.clientHeight;
+
+// Posiciona elementos aleatoriamente dentro da área do jogo
+function positionElements() {
+  enemies.forEach(enemy => {
+    enemy.style.left = Math.random() * (containerWidth - 70) + "px";
+    enemy.style.top = Math.random() * (containerHeight - 70) + "px";
+  });
+  items.forEach(item => {
+    item.style.left = Math.random() * (containerWidth - 70) + "px";
+    item.style.top = Math.random() * (containerHeight - 70) + "px";
+  });
+  obstacles.forEach(obstacle => {
+    obstacle.style.left = Math.random() * (containerWidth - 70) + "px";
+    obstacle.style.top = Math.random() * (containerHeight - 70) + "px";
+  });
+}
+
+positionElements();
 
 player.style.left = posX + "px";
 player.style.top = posY + "px";
@@ -21,14 +42,15 @@ function moveEnemies() {
   if (gameOver) return;
 
   enemies.forEach((enemy, idx) => {
-    let enemyPos = enemy.offsetLeft;
-    const maxX = container.clientWidth - enemy.clientWidth;
+    let enemyPosX = enemy.offsetLeft;
+    let newX = enemyPosX + enemyDirections[idx] * enemySpeeds[idx];
 
-    if (enemyPos <= 0 || enemyPos >= maxX) {
+    if (newX <= 0 || newX >= container.clientWidth - enemy.clientWidth) {
       enemyDirections[idx] *= -1;
+      newX = enemyPosX + enemyDirections[idx] * enemySpeeds[idx];
     }
 
-    enemy.style.left = (enemyPos + enemyDirections[idx] * enemySpeeds[idx]) + "px";
+    enemy.style.left = newX + "px";
 
     if (isColliding(player, enemy)) {
       alert(`☠️ Você foi pego pelo Rumpelstiltskin! Fim de jogo.\nPontuação: ${score}`);
@@ -63,6 +85,12 @@ document.addEventListener("keydown", (e) => {
       newX += speed;
       break;
   }
+
+  // Mantém o jogador dentro da área
+  if (newX < 0) newX = 0;
+  if (newX > container.clientWidth - player.clientWidth) newX = container.clientWidth - player.clientWidth;
+  if (newY < 0) newY = 0;
+  if (newY > container.clientHeight - player.clientHeight) newY = container.clientHeight - player.clientHeight;
 
   if (!checkCollisionWithObstacles(newX, newY)) {
     posX = newX;
