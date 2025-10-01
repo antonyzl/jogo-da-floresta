@@ -13,27 +13,50 @@
   <div id="game-wrapper">
     <div id="game-container">
       
-      <img id="player" src="imagens/shrek.png"
+      <img id="player" src="imagens/shrek.png">
 
-      <!-- Inimigos: Rumpelstiltskin -->
-      <img class="enemy" id="enemy1" src="imagens/Stiltskin.png"
-      <img class="enemy" id="enemy2" src="imagens/Stiltskin.png"
-      <img class="enemy" id="enemy3" src="imagens/Stiltskin.png"
+      
+      <img class="enemy" id="enemy1" src="imagens/Stiltskin.png">
+      <img class="enemy" id="enemy2" src="imagens/Stiltskin.png">
+      <img class="enemy" id="enemy3" src="imagens/Stiltskin.png">
 
-      <!-- Itens: Princesa Fiona -->
-      <img class="item" id="item1" src="imagens/fiona.png"
-      <img class="item" id="item2" src="imagens/fiona.png"
-      <img class="item" id="item3" src="imagens/fiona.png"
+      
+      <img class="item" id="item1" src="imagens/fiona.png">
+      <img class="item" id="item2" src="imagens/fiona.png">
+      <img class="item" id="item3" src="imagens/fiona.png">
 
-      <!-- Obstáculos: Poça de lama -->
-      <div class="obstacle" id="obstacle1"><img src="imagens/poça.png"
-      <div class="obstacle" id="obstacle2"><img src="imagens/poça.png"
-      <div class="obstacle" id="obstacle3"><img src="imagens/poça.png"
-      <div class="obstacle" id="obstacle4"><img src="imagens/poça.png"
-      <div class="obstacle" id="obstacle5"><img src="imagens/poça.png"
+      
+      <div class="obstacle" id="obstacle1"><img src="imagens/poça.png">
+      <div class="obstacle" id="obstacle2"><img src="imagens/poça.png">
+      <div class="obstacle" id="obstacle3"><img src="imagens/poça.png">
+      <div class="obstacle" id="obstacle4"><img src="imagens/poça.png">
+      <div class="obstacle" id="obstacle5"><img src="imagens/poça.png">
     </div>
   </div>
 
   <script src="script.js"></script>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jogo do Shrek - Reiniciar</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="game-container">
+    <h1>Jogo do Shrek</h1>
+
+    <div id="jogo">
+      <p id="score">Placar: 0</p>
+      <button id="startBtn">Começar o Jogo</button>
+      <button id="reiniciarBtn">Reiniciar o Jogo</button>
+      
+      <!-- A área do jogo (simulada com um quadrado representando o Shrek) -->
+      <div id="shrek" class="character"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+
 </body>
 </html>
