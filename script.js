@@ -136,4 +136,48 @@ function checkCollisionWithItems() {
       scoreDisplay.textContent = score;
     }
   });
+
+  
+const startBtn = document.getElementById('startBtn');
+const reiniciarBtn = document.getElementById('reiniciarBtn');
+const scoreElement = document.getElementById('score');
+const shrek = document.getElementById('shrek');
+
+let score = 0;
+let gameStarted = false;
+
+
+function iniciarJogo() {
+  score = 0;
+  scoreElement.textContent = `Placar: ${score}`;
+  gameStarted = true;
+
+  
+}
+
+function moveShrek() {
+  let position = 0;
+  const interval = setInterval(() => {
+    if (position >= 300) {
+      clearInterval(interval); 
+      score += 10; 
+      scoreElement.textContent = `Placar: ${score}`;
+    }
+    shrek.style.left = position + 'px';
+    position += 5;
+  }, 100);
+}
+
+function reiniciarJogo() {
+  if (gameStarted) {
+    gameStarted = false;
+    shrek.style.left = '0px'; 
+    score = 0;
+    scoreElement.textContent = `Placar: ${score}`;
+  }
+}
+
+startBtn.addEventListener('click', iniciarJogo);
+reiniciarBtn.addEventListener('click', reiniciarJogo);
+
 }
