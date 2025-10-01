@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Aventura na Floresta</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <h1>Aventura na Floresta 🌲</h1>
   <p>Pontuação: <span id="score">0</span></p>
-  <div id="game-container">
-    <div id="player"></div>
-    <div class="obstacle" style="top:100px; left:200px;"></div>
-    <div class="obstacle" style="top:300px; left:500px;"></div>
-    <div class="item" style="top:80px; left:600px;"></div>
-    <div class="item" style="top:400px; left:100px;"></div>
-    <div class="enemy" id="enemy1" style="top:150px; left:400px;"></div>
+
+  <div id="game-wrapper">
+    <div id="game-container">
+      <img id="player" src="https://img.favpng.com/3/14/10/shrek-film-series-princess-fiona-donkey-animated-film-png-favpng-XQPiuLTuiQsbZK0UBzBmSmsQF.jpg" alt="Jogador" />
+      <img class="enemy" id="enemy1" src="https://img1.picmix.com/output/stamp/normal/6/1/5/6/56516_e8713.png" alt="Inimigo" style="top:150px; left:400px;" />
+      <img class="item" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmz9_kMCT1IoflSQfpSiDvzVgfgkjrTEZB6g&s" style="top:100px; left:600px;" />
+      <img class="item" src="https://d1muf25xaso8hp.cloudfront.net/https://img.criativodahora.com.br/2024/04/criativo-660a9fb3c0fa8img-2024-04-01660a9fb3c0fad.jpg?w=1000&h=&auto=compress&dpr=1&fit=max" style="top:700px; left:300px;" />
+      <div class="obstacle" style="top:300px; left:200px;"></div>
+      <div class="obstacle" style="top:800px; left:500px;"></div>
+    </div>
   </div>
 
   <script src="script.js"></script>

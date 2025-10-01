@@ -1,18 +1,21 @@
 const player = document.getElementById("player");
 const container = document.getElementById("game-container");
 const scoreDisplay = document.getElementById("score");
-
 const obstacles = document.querySelectorAll(".obstacle");
 const items = document.querySelectorAll(".item");
 const enemy = document.getElementById("enemy1");
 
-let posX = 380;
-let posY = 230;
-const speed = 10;
+let posX = 100;
+let posY = 100;
 let score = 0;
 let gameOver = false;
+const speed = 10;
 
-// Movimento do inimigo (simples: esquerda <-> direita)
+// Inicializa a posição do jogador
+player.style.left = posX + "px";
+player.style.top = posY + "px";
+
+// Movimento do inimigo (esquerda e direita)
 let enemyDirection = 1;
 setInterval(() => {
   if (gameOver) return;
@@ -23,12 +26,12 @@ setInterval(() => {
   if (enemyPos <= 0 || enemyPos >= maxX) {
     enemyDirection *= -1;
   }
-  enemy.style.left = (enemyPos + enemyDirection * 5) + "px";
 
+  enemy.style.left = (enemyPos + enemyDirection * 5) + "px";
   checkCollisionWithEnemy();
 }, 100);
 
-// Movimento do jogador
+// Controle do jogador
 document.addEventListener("keydown", (e) => {
   if (gameOver) return;
 
@@ -38,22 +41,18 @@ document.addEventListener("keydown", (e) => {
   switch (e.key) {
     case "ArrowUp":
     case "w":
-    case "W":
       newY -= speed;
       break;
     case "ArrowDown":
     case "s":
-    case "S":
       newY += speed;
       break;
     case "ArrowLeft":
     case "a":
-    case "A":
       newX -= speed;
       break;
     case "ArrowRight":
     case "d":
-    case "D":
       newX += speed;
       break;
   }
@@ -69,33 +68,36 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
+// Verifica colisão entre elementos
 function isColliding(a, b) {
-  const rect1 = a.getBoundingClientRect();
-  const rect2 = b.getBoundingClientRect();
+  const r1 = a.getBoundingClientRect();
+  const r2 = b.getBoundingClientRect();
   return !(
-    rect1.top > rect2.bottom ||
-    rect1.bottom < rect2.top ||
-    rect1.right < rect2.left ||
-    rect1.left > rect2.right
+    r1.top > r2.bottom ||
+    r1.bottom < r2.top ||
+    r1.right < r2.left ||
+    r1.left > r2.right
   );
 }
 
+// Checa colisão com obstáculos
 function checkCollisionWithObstacles(newX, newY) {
   player.style.left = newX + "px";
   player.style.top = newY + "px";
-  let collision = false;
 
+  let collided = false;
   obstacles.forEach(ob => {
-    if (isColliding(player, ob)) {
-      collision = true;
-    }
+    if (isColliding(player, ob)) collided = true;
   });
 
+  // Volta posição original
   player.style.left = posX + "px";
   player.style.top = posY + "px";
-  return collision;
+
+  return collided;
 }
 
+// Checa e coleta itens
 function checkCollisionWithItems() {
   items.forEach(item => {
     if (item.style.display !== "none" && isColliding(player, item)) {
@@ -106,9 +108,10 @@ function checkCollisionWithItems() {
   });
 }
 
+// Checa colisão com inimigo
 function checkCollisionWithEnemy() {
   if (isColliding(player, enemy)) {
-    alert("💀 Você foi pego por um inimigo! Fim de jogo.\nPontuação: " + score);
+    alert("☠️ Você foi pego! Fim de jogo.\nPontuação: " + score);
     gameOver = true;
   }
 }
